@@ -9,31 +9,55 @@
 import SwiftUI
 
 struct ContentView: View {
-
     
     @State var firstName = ""
+    @State var lastName = ""
 
     var body: some View {
         NavigationView {
             VStack {
                 VStack {
                     VStack {
+                        //
                         Group {
                             TextField("First Name", text: $firstName).padding(12)
-                        }.background(Color.white)
-                        TextField("First Name", text: $firstName)
+                        }
+                        .background(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .shadow(radius: 5)
+                        //
+                        Group {
+                            TextField("Last Name", text: $lastName).padding(12)
+                        }
+                        .background(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .shadow(radius: 5)
+                        //
+                        Text(" \(firstName) \(lastName)")
+                        //
                         Button(action: {
                             
                         }) {
-                            Text("Create User")
-                        }.background(Color.gray)
+                            Group {
+                                Text("Create User").foregroundColor(.white).padding(12)
+                                }
+                                .background(Color.blue)
+                                .clipShape(RoundedRectangle(cornerRadius: 5))
+                                .shadow(radius: 5)
+                        }
                     }
-                }
+                }.background(Color.gray)
                 List {
                     Text("Empty Row")
                 }
             }
         }.navigationBarTitle(Text("Credit Card Form"))
+            .navigationBarItems(leading: HStack{
+                Text("First name")
+                Text(firstName)
+                Text("Last name")
+                Text(lastName)
+            })
     }
 }
 
