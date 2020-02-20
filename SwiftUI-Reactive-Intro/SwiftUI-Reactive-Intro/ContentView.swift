@@ -13,6 +13,8 @@ struct ContentView: View {
     @State var firstName = ""
     @State var lastName = ""
     
+    @State var users = [String]()
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -38,7 +40,7 @@ struct ContentView: View {
                         .shadow(radius: 5)
                                                 
                         Button(action: {
-                            
+                            self.users.append("\(self.firstName) \(self.lastName)")
                         }) {
                             Text("Create User")
                                 .foregroundColor(.white)
@@ -53,8 +55,8 @@ struct ContentView: View {
                 }
                 .background(Color.gray)
                 
-                List {
-                    Text("Empty Row")
+                List(users, id: \.self) { string in
+                    Text(string)
                 }
                 .navigationBarTitle(Text("Credit Card Form"))
                 .navigationBarItems(leading: HStack{
