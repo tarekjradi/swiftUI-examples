@@ -41,11 +41,13 @@ struct ContentView: View {
                                                 
                         Button(action: {
                             self.users.append("\(self.firstName) \(self.lastName)")
+                            self.firstName.removeAll()
+                            self.lastName.removeAll()
                         }) {
                             Text("Create User")
                                 .foregroundColor(.white)
                                 .padding(12)
-                                .background(Color.blue)
+                                .background((firstName.count + lastName.count > 0) ? Color.blue : Color.gray )
                                 .clipShape(RoundedRectangle(cornerRadius: 5))
                                 .shadow(radius: 5)
                             
