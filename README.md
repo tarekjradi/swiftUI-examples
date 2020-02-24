@@ -10,4 +10,4 @@ Lots to like about the SwiftUI framework that is very modern. The concept of rea
 
 Creating a two dimensional grid of buttons.
 
-![](swift-ui-calculator.jpg)
+![](swift-ui-calculator.jpeg)
