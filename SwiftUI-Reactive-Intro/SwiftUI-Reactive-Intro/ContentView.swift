@@ -10,11 +10,12 @@ import SwiftUI
 
 struct ContentView: View {
     
+    /// Properties
     @State var firstName = ""
     @State var lastName = ""
-    
     @State var users = [String]()
     
+    /// Body View
     var body: some View {
         NavigationView {
             VStack {
@@ -45,9 +46,9 @@ struct ContentView: View {
                             self.lastName.removeAll()
                         }) {
                             Text("Create User")
-                                .foregroundColor(.white)
+                                .foregroundColor(.black)
                                 .padding(12)
-                                .background((firstName.count + lastName.count > 0) ? Color.blue : Color.gray )
+                                .background((firstName.count + lastName.count > 0) ? Color.blue : Color.white )
                                 .clipShape(RoundedRectangle(cornerRadius: 5))
                                 .shadow(radius: 5)
                             
@@ -55,12 +56,12 @@ struct ContentView: View {
                     }
                     .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
                 }
-                .background(Color.gray)
+                .background(Color.green)
                 
                 List(users, id: \.self) { string in
                     Text(string)
                 }
-                .navigationBarTitle(Text("Credit Card Form"))
+                .navigationBarTitle(Text("New user list"))
                 .navigationBarItems(leading: HStack{
                     Text("First name")
                     Text(firstName).foregroundColor(.red)
