@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A1CECA66240572DE00FA30B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CECA65240572DE00FA30B5 /* AppDelegate.swift */; };
 		A1CECA68240572DE00FA30B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CECA67240572DE00FA30B5 /* SceneDelegate.swift */; };
-		A1CECA6A240572DE00FA30B5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CECA69240572DE00FA30B5 /* ContentView.swift */; };
+		A1CECA6A240572DE00FA30B5 /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CECA69240572DE00FA30B5 /* CalculatorView.swift */; };
 		A1CECA6C240572E400FA30B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1CECA6B240572E400FA30B5 /* Assets.xcassets */; };
 		A1CECA6F240572E400FA30B5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1CECA6E240572E400FA30B5 /* Preview Assets.xcassets */; };
 		A1CECA72240572E400FA30B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A1CECA70240572E400FA30B5 /* LaunchScreen.storyboard */; };
@@ -38,7 +38,7 @@
 		A1CECA62240572DE00FA30B5 /* SwiftUI-Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI-Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1CECA65240572DE00FA30B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1CECA67240572DE00FA30B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A1CECA69240572DE00FA30B5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A1CECA69240572DE00FA30B5 /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 		A1CECA6B240572E400FA30B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1CECA6E240572E400FA30B5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A1CECA71240572E400FA30B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 			children = (
 				A1CECA65240572DE00FA30B5 /* AppDelegate.swift */,
 				A1CECA67240572DE00FA30B5 /* SceneDelegate.swift */,
-				A1CECA69240572DE00FA30B5 /* ContentView.swift */,
+				A1CECA69240572DE00FA30B5 /* CalculatorView.swift */,
 				A1CECA6B240572E400FA30B5 /* Assets.xcassets */,
 				A1CECA70240572E400FA30B5 /* LaunchScreen.storyboard */,
 				A1CECA73240572E400FA30B5 /* Info.plist */,
@@ -269,7 +269,7 @@
 			files = (
 				A1CECA66240572DE00FA30B5 /* AppDelegate.swift in Sources */,
 				A1CECA68240572DE00FA30B5 /* SceneDelegate.swift in Sources */,
-				A1CECA6A240572DE00FA30B5 /* ContentView.swift in Sources */,
+				A1CECA6A240572DE00FA30B5 /* CalculatorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
