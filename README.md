@@ -2,7 +2,7 @@
 
 A compilation of code used to improve my SwiftUI skills — the techniques and systems code are coming from my classes made in different courses. Enjoy it!
 
-credits for @bhlvoong
+credits for [bhlvoong](https://github.com/bhlvoong) 
 
 ## SwiftUI Reactive Intro: State Management and Bindings
 
@@ -14,8 +14,10 @@ Lots to like about the SwiftUI framework that is very modern. The concept of rea
 
 Creating a two dimensional grid of buttons.
 
-![](swift-ui-calculator.jpeg)
+![](swift-ui-calculator.png)
 
 ## SwiftUI Animated Bar Charts and Picker Segmented Style Binding
 
 Improvements to come along is the ability to add animations
+
+https://github.com/bhlvoong
