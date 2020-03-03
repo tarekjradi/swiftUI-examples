@@ -10,18 +10,17 @@ import SwiftUI
 
 struct ContentView: View {
     
+    // MARK: properties
     @State var pickerSelectedItem = 0
     @State var dataPoints: [[CGFloat]] = [
-        [50, 100, 150],
-        [150, 50, 100],
-        [50, 70, 30]
+        [50, 100, 150, 30, 40],
+        [150, 50, 100, 200, 30],
+        [50, 70, 50, 70, 100]
     ]
     
     var body: some View {
-        
         ZStack {
-            Color.green.edgesIgnoringSafeArea(.all)
-            
+            Color("appBackground").edgesIgnoringSafeArea(.all)
             VStack {
                 Text("Hello, World!")
                      .font(.system(size: 34))
@@ -36,9 +35,15 @@ struct ContentView: View {
                 .padding(.horizontal, 24)
 
                 HStack (spacing: 16) {
-                    BarView(value: dataPoints[pickerSelectedItem][0])
-                    BarView(value: dataPoints[pickerSelectedItem][1])
-                    BarView(value: dataPoints[pickerSelectedItem][2])
+                    //We dot not use for each loop here,
+                    //is because the animation not will work
+                    //or you can use ForEach, just add .animation()
+                    //after the picker binding. $pickerSelectedItem.animation()
+                    BarView(value: dataPoints[pickerSelectedItem][0], description: "M")
+                    BarView(value: dataPoints[pickerSelectedItem][1], description: "T")
+                    BarView(value: dataPoints[pickerSelectedItem][2], description: "W")
+                    BarView(value: dataPoints[pickerSelectedItem][3], description: "T")
+                    BarView(value: dataPoints[pickerSelectedItem][4], description: "F")
                 }
                 .padding(.top, 24)
                 .animation(.default)
@@ -54,10 +59,13 @@ struct ContentView: View {
 ///
 /// - Parameters:
 ///     - value: The `Binding` value of the BarView
+///     - description: The `Binding` value of the BarView
 ///
 struct BarView: View {
 
+    // MARK: properties
     var value: CGFloat = 0
+    var description: String = ""
     
     var body: some View {
         VStack {
@@ -67,11 +75,10 @@ struct BarView: View {
                  Capsule().frame(width: 30, height:value)
                      .foregroundColor(.white)
              }
-            Text("Sa").padding(.top, 8)
+            Text(description).padding(.top, 8)
         }
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
