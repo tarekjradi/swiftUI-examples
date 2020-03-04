@@ -19,3 +19,5 @@ Creating a two dimensional grid of buttons.
 ## SwiftUI Animated Bar Charts and Picker Segmented Style Binding
 
 Improvements to come along is the ability to add animations
+
+![](swift-ui-bar-charts.gif)
