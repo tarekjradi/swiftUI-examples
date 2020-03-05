@@ -37,7 +37,7 @@ struct CalculatorView: View {
                                 .frame(width: self.buttonWidth(), height: self.buttonWidth())
                                 .foregroundColor(.white)
                                 .background(Color.yellow)
-                                .cornerRadius(40)
+                                .cornerRadius(self.buttonWidth())
                         }
                     }
                 }
