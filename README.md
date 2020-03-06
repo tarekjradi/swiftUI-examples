@@ -1,4 +1,4 @@
-# SwiftUI-Intro
+# SwiftUI-Patterns
 
 A compilation of code used to improve my SwiftUI skills — the techniques and systems code are coming from my classes made in different courses. Enjoy it!
 
