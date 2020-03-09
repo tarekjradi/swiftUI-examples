@@ -12,7 +12,7 @@ Lots to like about the SwiftUI framework that is very modern. The concept of rea
 
 ## SwiftUI Calculator
 
-Creating a two dimensional grid of buttons.
+Creating a two dimensional grid of buttons using Enumeration, Switches and Reactive Environment Object Application State
 
 ![](swift-ui-calculator.png)
 
