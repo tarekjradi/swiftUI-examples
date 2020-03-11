@@ -52,7 +52,17 @@ enum CalculatorButton: String {
 
 //Env object
 class GlobalEnvironment: ObservableObject {
-    @Published var display = "0000"
+    @Published var display = ""
+    
+    func calculate(button: CalculatorButton) {
+        switch button {
+        case .ac:
+            display = ""
+        default:
+            display = "\(display)\(button.title)"
+            return
+        }
+    }
 }
 
 struct CalculatorView: View {
@@ -83,7 +93,7 @@ struct CalculatorView: View {
                     HStack (spacing: 12) {
                         ForEach(row, id: \.self) { button in
                             Button(action: {
-                                self.env.display = button.title
+                                self.env.calculate(button: button)
                             }) {
                                 Text(button.title)
                                     .font(.system(size: 32))
