@@ -14,7 +14,7 @@ Lots to like about the SwiftUI framework that is very modern. The concept of rea
 
 Creating a two dimensional grid of buttons using Enumeration, Switches and Reactive Environment Object Application State
 
-![](swift-ui-calculator.png)
+![](swift-ui-calculator.gif)
 
 ## SwiftUI Animated Bar Charts and Picker Segmented Style Binding
 
