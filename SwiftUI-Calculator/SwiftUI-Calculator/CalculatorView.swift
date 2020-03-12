@@ -86,22 +86,12 @@ struct CalculatorView: View {
                     Spacer()
                     Text(env.display).foregroundColor(.white)
                         .font(.system(size: 64))
-
                 }.padding()
                 
                 ForEach(buttons, id: \.self) { row in
                     HStack (spacing: 12) {
                         ForEach(row, id: \.self) { button in
-                            Button(action: {
-                                self.env.calculate(button: button)
-                            }) {
-                                Text(button.title)
-                                    .font(.system(size: 32))
-                                    .frame(width: self.buttonWidth(button: button), height: (UIScreen.main.bounds.width - 5 * 12) / 4)
-                                    .foregroundColor(.white)
-                                    .background(button.backgroundColor)
-                                    .cornerRadius(self.buttonWidth(button: button))
-                            }
+                            CalculatorButtonView(button: button)
                         }
                     }
                 }
@@ -109,15 +99,33 @@ struct CalculatorView: View {
             }.padding(.bottom)
         }
     }
+}
+
+struct CalculatorButtonView: View {
+    var button: CalculatorButton
     
-    func buttonWidth(button: CalculatorButton) -> CGFloat {
+    @EnvironmentObject var env: GlobalEnvironment
+    var body: some View {
         
+        Button(action: {
+            self.env.calculate(button: self.button)
+        }) {
+            Text(button.title)
+                .font(.system(size: 32))
+                .frame(width: self.buttonWidth(button: button), height: (UIScreen.main.bounds.width - 5 * 12) / 4)
+                .foregroundColor(.white)
+                .background(button.backgroundColor)
+                .cornerRadius(self.buttonWidth(button: button))
+        }
+    }
+    
+    private func buttonWidth(button: CalculatorButton) -> CGFloat {
         if button == .zero {
             return (UIScreen.main.bounds.width - 4 * 12) / 4 * 2
         }
-        
         return (UIScreen.main.bounds.width - 5 * 12) / 4
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
