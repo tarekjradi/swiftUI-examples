@@ -21,3 +21,5 @@ Creating a two dimensional grid of buttons using Enumeration, Switches and React
 Improvements to come along is the ability to add animations
 
 ![](swift-ui-bar-charts.gif)
+
+## Better Previews with PreviewLayout PreviewDevice and ColorSchemes
