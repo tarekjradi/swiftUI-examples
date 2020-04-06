@@ -22,4 +22,6 @@ Improvements to come along is the ability to add animations
 
 ![](swift-ui-bar-charts.gif)
 
+## SwiftUI Charts With JSON ViewModels
+
 ## Better Previews with PreviewLayout PreviewDevice and ColorSchemes
