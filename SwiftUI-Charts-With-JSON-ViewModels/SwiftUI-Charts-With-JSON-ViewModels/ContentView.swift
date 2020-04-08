@@ -8,9 +8,66 @@
 
 import SwiftUI
 
+struct TimeSeries: Decodable {
+    let unitedStates, italy, iran, unitedKingdom: [DayData]
+    
+    enum CodingKeys: String, CodingKey {
+        case italy = "Italy"
+        case unitedStates = "US"
+        case iran = "Iran"
+        case unitedKingdom = "United Kingdom"
+    }
+}
+
+struct DayData: Decodable, Hashable, Identifiable {
+    let id = UUID().uuidString
+    let date: String
+    let confirmed, deaths, recovered: Int
+}
+
+class ChartsViewModel: ObservableObject {
+    
+    var timeSeries: TimeSeries!
+    
+    @Published var series = [DayData]()
+}
+
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            Text("Corona!")
+                .font(.system(size: 34, weight: .bold))
+            Text("Total Deaths:")
+            
+            HStack {
+                //TODO: insert the JSON data here
+                VStack {
+                    Spacer()
+                    }.frame(width: 10, height: 200)
+                .background(Color.red)
+                VStack {
+                    Spacer()
+                    }.frame(width: 10, height: 200)
+                .background(Color.red)
+                VStack {
+                    Spacer()
+                    }.frame(width: 10, height: 200)
+                .background(Color.red)
+                VStack {
+                    Spacer()
+                    }.frame(width: 10, height: 200)
+                .background(Color.red)
+                VStack {
+                    Spacer()
+                    }.frame(width: 10, height: 200)
+                .background(Color.red)
+                VStack {
+                    Spacer()
+                    }.frame(width: 10, height: 200)
+                .background(Color.red)
+
+            }
+        }
     }
 }
 
