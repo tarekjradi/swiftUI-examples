@@ -30,9 +30,27 @@ class ChartsViewModel: ObservableObject {
     var timeSeries: TimeSeries!
     
     @Published var series = [DayData]()
+
+    init() {
+        let urlString = "https://pomber.github.io/covid19/timeseries.json"
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, resp, error) in
+            guard let data = data else { return }
+            do {
+                let timeSeries = try JSONDecoder().decode(TimeSeries.self, from: data)
+                print(timeSeries.unitedStates)
+            } catch {
+                print("JSON Decode failed:", error)
+            }
+            
+        }.resume()
+    }
 }
 
 struct ContentView: View {
+    
+    @ObservedObject var viewModel = ChartsViewModel()
+    
     var body: some View {
         VStack {
             Text("Corona!")
