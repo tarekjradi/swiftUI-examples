@@ -29,7 +29,7 @@ class ChartsViewModel: ObservableObject {
     
     var timeSeries: TimeSeries!
     
-    @Published var series = [DayData]()
+    @Published var dataSet = [DayData]()
 
     init() {
         let urlString = "https://pomber.github.io/covid19/timeseries.json"
@@ -38,11 +38,12 @@ class ChartsViewModel: ObservableObject {
             guard let data = data else { return }
             do {
                 let timeSeries = try JSONDecoder().decode(TimeSeries.self, from: data)
-                print(timeSeries.unitedStates)
+                DispatchQueue.main.sync {
+                    self.dataSet = timeSeries.unitedStates.filter({ $0.deaths > 0})
+                }
             } catch {
                 print("JSON Decode failed:", error)
             }
-            
         }.resume()
     }
 }
@@ -56,34 +57,17 @@ struct ContentView: View {
             Text("Corona!")
                 .font(.system(size: 34, weight: .bold))
             Text("Total Deaths:")
-            
-            HStack {
-                //TODO: insert the JSON data here
-                VStack {
-                    Spacer()
-                    }.frame(width: 10, height: 200)
-                .background(Color.red)
-                VStack {
-                    Spacer()
-                    }.frame(width: 10, height: 200)
-                .background(Color.red)
-                VStack {
-                    Spacer()
-                    }.frame(width: 10, height: 200)
-                .background(Color.red)
-                VStack {
-                    Spacer()
-                    }.frame(width: 10, height: 200)
-                .background(Color.red)
-                VStack {
-                    Spacer()
-                    }.frame(width: 10, height: 200)
-                .background(Color.red)
-                VStack {
-                    Spacer()
-                    }.frame(width: 10, height: 200)
-                .background(Color.red)
-
+            if !viewModel.dataSet.isEmpty {
+                ScrollView(.horizontal) {
+                    HStack (spacing: 4) {
+                        ForEach(viewModel.dataSet, id: \.self) { day in
+                            HStack {
+                                Spacer()
+                            }.frame(width: 10, height: 100)
+                            .background(Color.red)
+                        }
+                    }
+                }
             }
         }
     }
