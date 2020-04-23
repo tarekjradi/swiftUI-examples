@@ -9,14 +9,8 @@
 import SwiftUI
 
 struct TimeSeries: Decodable {
-    let unitedStates, italy, iran, unitedKingdom: [DayData]
-    
-    enum CodingKeys: String, CodingKey {
-        case italy = "Italy"
-        case unitedStates = "US"
-        case iran = "Iran"
-        case unitedKingdom = "United Kingdom"
-    }
+    let Thailand : [DayData]
+    let US:  [DayData]
 }
 
 struct DayData: Decodable, Hashable, Identifiable {
@@ -27,10 +21,11 @@ struct DayData: Decodable, Hashable, Identifiable {
 
 class ChartsViewModel: ObservableObject {
     
-    var timeSeries: TimeSeries!
-    
     @Published var dataSet = [DayData]()
 
+    var timeSeries: TimeSeries!
+    var max = 0
+    
     init() {
         let urlString = "https://pomber.github.io/covid19/timeseries.json"
         guard let url = URL(string: urlString) else { return }
@@ -38,8 +33,13 @@ class ChartsViewModel: ObservableObject {
             guard let data = data else { return }
             do {
                 let timeSeries = try JSONDecoder().decode(TimeSeries.self, from: data)
+                
                 DispatchQueue.main.sync {
-                    self.dataSet = timeSeries.unitedStates.filter({ $0.deaths > 0})
+                    self.dataSet = timeSeries.US.filter({ $0.deaths > 0})
+                    
+                    self.max = self.dataSet.max(by: { (day1, day2) -> Bool in
+                        return day2.deaths > day1.deaths
+                        })?.deaths ?? 0
                 }
             } catch {
                 print("JSON Decode failed:", error)
@@ -56,14 +56,14 @@ struct ContentView: View {
         VStack {
             Text("Corona!")
                 .font(.system(size: 34, weight: .bold))
-            Text("Total Deaths:")
+            Text("Total Deaths: \(viewModel.max)")
             if !viewModel.dataSet.isEmpty {
                 ScrollView(.horizontal) {
-                    HStack (spacing: 4) {
+                    HStack (alignment: .bottom, spacing: 4) {
                         ForEach(viewModel.dataSet, id: \.self) { day in
                             HStack {
                                 Spacer()
-                            }.frame(width: 10, height: 100)
+                            }.frame(width: 10, height: (CGFloat(day.deaths) / CGFloat(self.viewModel.max)) * 200)
                             .background(Color.red)
                         }
                     }
