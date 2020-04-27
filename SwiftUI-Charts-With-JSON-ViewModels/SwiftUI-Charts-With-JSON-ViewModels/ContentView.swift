@@ -29,7 +29,7 @@ class ChartsViewModel: ObservableObject {
     var max = 0
     
     init() {
-        let urlString = "https://github.com/tarekjradi/SwiftUI-Patterns/timeseries.json"
+        let urlString = "https://raw.githubusercontent.com/tarekjradi/SwiftUI-Patterns/master/timeseries.json"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, resp, error) in
             guard let data = data else { return }
