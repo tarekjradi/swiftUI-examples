@@ -22,36 +22,48 @@ struct DayData: Decodable, Hashable, Identifiable {
 }
 
 class ChartsViewModel: ObservableObject {
-    
-    @Published var dataSet = [DayData]()
 
+    // MARK: properties
     var timeSeries: TimeSeries!
     var max = 0
-    
+    private let urlString = "https://raw.githubusercontent.com/tarekjradi/SwiftUI-Patterns/master/timeseries.json"
+
+    // MARK: Published
+    @Published var dataSet = [DayData]()
+
     init() {
-        let urlString = "https://raw.githubusercontent.com/tarekjradi/SwiftUI-Patterns/master/timeseries.json"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, resp, error) in
             guard let data = data else { return }
             do {
-                let timeSeries = try JSONDecoder().decode(TimeSeries.self, from: data)
-                
+                self.timeSeries = try JSONDecoder().decode(TimeSeries.self, from: data)
                 DispatchQueue.main.sync {
-                    self.dataSet = timeSeries.Italy.filter({ $0.deaths > 0})
-                    
-                    self.max = self.dataSet.max(by: { (day1, day2) -> Bool in
-                        return day2.deaths > day1.deaths
-                        })?.deaths ?? 0
+                self.loadTimeSeries(byItem: 0)
                 }
             } catch {
                 print("JSON Decode failed:", error)
             }
+
         }.resume()
     }
+    
+    func loadTimeSeries(byItem: Int) {
+        guard let _ = self.timeSeries else { return }
+        self.dataSet = self.timeSeries.Italy.filter({ $0.deaths > 0})
+        self.max = self.dataSet.max(by: { (day1, day2) -> Bool in
+            return day2.deaths > day1.deaths
+            })?.deaths ?? 0
+        
+    }
+    
 }
 
 struct ContentView: View {
     
+    // MARK: State properties
+    @State var pickerSelectedItem = 0
+
+    // MARK: ObservedObjects
     @ObservedObject var viewModel = ChartsViewModel()
     
     var body: some View {
@@ -71,6 +83,13 @@ struct ContentView: View {
                     }
                 }
             }
+            Picker(selection: $pickerSelectedItem, label: Text("")) {
+                Text("Thailand").tag(0)
+                Text("US").tag(1)
+                Text("Italy").tag(2)
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal, 24)
         }
     }
 }
