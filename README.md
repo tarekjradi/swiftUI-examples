@@ -24,4 +24,6 @@ Improvements to come along is the ability to add animations
 
 ## SwiftUI Charts With JSON ViewModels
 
+![](swift-ui-charts-with-json-viewmodels.png)
+
 ## Better Previews with PreviewLayout PreviewDevice and ColorSchemes
